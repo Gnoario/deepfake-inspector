@@ -16,24 +16,22 @@ dataset_path = '/workspace/datasets/Dataset/Validation'
 
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     train_dataset_path,
-    validation_split=0.2,
-    subset='training',
     seed=123,
     image_size=(256, 256),
     batch_size=32,
-    label_mode='binary'  # binário: 0 para 'Fake', 1 para 'Real'
+    label_mode='binary',  # binário: 0 para 'Fake', 1 para 'Real'
+    shuffle=True,
 )
 
 print(train_ds.class_names)
 
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
     dataset_path,
-    validation_split=0.2,
-    subset='validation',
     seed=123,
     image_size=(256, 256),
     batch_size=32,
-    label_mode='binary'
+    label_mode='binary',
+    shuffle=False,
 )
 
 data_augmentation = tf.keras.Sequential([
